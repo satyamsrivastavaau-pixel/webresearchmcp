@@ -26,9 +26,6 @@ class RequireSharedSecretMiddleware(BaseHTTPMiddleware):
         return await call_next(request)
 
 
-app.add_middleware(RequireSharedSecretMiddleware)
-
-
 def _truncate(text: str, limit: int = MAX_PAGE_CHARS) -> str:
     return re.sub(r"\s+", " ", text or "").strip()[:limit]
 
