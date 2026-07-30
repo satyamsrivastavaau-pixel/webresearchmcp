@@ -16,7 +16,11 @@ MCP_SHARED_SECRET = os.getenv("MCP_SHARED_SECRET", "")
 MAX_PAGE_CHARS = int(os.getenv("MAX_PAGE_CHARS", "12000"))
 REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "20"))
 
-mcp = FastMCP(APP_NAME)
+mcp = FastMCP(
+    APP_NAME,
+    stateless_http=True,
+    json_response=True,
+)
 
 
 class RequireSharedSecretMiddleware(BaseHTTPMiddleware):
