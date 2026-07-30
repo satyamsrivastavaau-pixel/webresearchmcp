@@ -17,7 +17,6 @@ MAX_PAGE_CHARS = int(os.getenv("MAX_PAGE_CHARS", "12000"))
 REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "20"))
 
 mcp = FastMCP(APP_NAME)
-app = mcp.streamable_http_app()
 
 
 class RequireSharedSecretMiddleware(BaseHTTPMiddleware):
@@ -215,6 +214,8 @@ def research(query: str, max_results: int = 5) -> Dict[str, Any]:
         ],
     }
 
+app = mcp.streamable_http_app()
+app.add_middleware(RequireSharedSecretMiddleware)
 
 if __name__ == "__main__":
     import uvicorn
